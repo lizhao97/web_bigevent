@@ -31,7 +31,7 @@
                 <!-- 密码框 -->
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-password"></i>
-                    <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    <input type="password" name="password" required lay-verify="required|pwd" placeholder="请输入密码" autocomplete="off" class="layui-input">
                 </div>
                 <!-- 登录按钮 -->
                 <div class="layui-form-item">
@@ -54,12 +54,12 @@
                 <!-- 密码框 -->
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-password"></i>
-                    <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    <input type="password" name="password" required lay-verify="required|pwd" placeholder="请输入密码" autocomplete="off" class="layui-input">
                 </div>
                 <!-- 密码确认框 -->
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-password"></i>
-                    <input type="password" name="repassword" required lay-verify="required" placeholder="再次确认密码" autocomplete="off" class="layui-input">
+                    <input type="password" name="repassword" required lay-verify="required|repwd" placeholder="再次确认密码" autocomplete="off" class="layui-input">
                 </div>
                 <!-- 注册按钮 -->
                 <div class="layui-form-item">
@@ -69,13 +69,15 @@
                     <a href="javascript:;" id="link_login">去登录</a>
                 </div>
             </form>
-
         </div>
     </div>
+    <!-- 引入layui的js文件 -->
+    <script src="/assets/lib/layui/layui.all.js"></script>
     <!-- 引入jquery文件 -->
     <script src="/assets/lib/jquery.js"></script>
     <!-- 引入自己的javascript文件 -->
     <script src="/assets/js/login.js"></script>
+
 </body>
 
 </html>
