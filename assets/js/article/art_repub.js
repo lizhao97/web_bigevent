@@ -1,5 +1,4 @@
 $(function () {
-
     var layer = layui.layer
     var form = layui.form
     initCate()
@@ -33,7 +32,6 @@ $(function () {
 
     // 3. 初始化裁剪区域
     $image.cropper(options)
-
     //为选择封面按钮绑定点击事件
     $('#btnChooseImage').on('click', function () {
         $('#coverFile').click()
@@ -60,11 +58,13 @@ $(function () {
         art_state = '草稿'
     })
     // 为表单绑定submit事件
-    $('#form-pub').on('submit', function (e) {
+    $('#form-repub').on('submit', function (e) {
         e.preventDefault()
         // 基于form表单创建一个FormData对象
         var fd = new FormData($(this)[0])
+        // 获取数据渲染页面
         fd.append('state', art_state)
+        fd.append('Id', id)
         fd.append('content', tinymce.activeEditor.getContent())
         // fd.forEach(function (value, k) {
         //     console.log(k, value);
@@ -81,14 +81,14 @@ $(function () {
                 // 将文件对象,存储到fd中
                 fd.append('cover_img', blob)
                 // 发起ajax数据请求
-                publishArticle(fd)
+                xiugai(fd)
             })
     })
-    // 定义一个发布文章的方法
-    function publishArticle(fd) {
+    // 定义一个修改文章的方法
+    function xiugai(fd) {
         $.ajax({
             method: 'POST',
-            url: '/my/article/add',
+            url: '/my/article/edit',
             data: fd,
             // 注意向服务器提交的是FormData格式的数据
             // 必须添加以下两个配置项
@@ -96,13 +96,26 @@ $(function () {
             processData: false,
             success: function (res) {
                 if (res.status !== 0) {
-                    return layer.msg('发布文章失败！ ')
+                    return layer.msg('修改文章失败！ ')
                 }
-                layer.msg('发布文章成功！ ')
+                layer.msg('修改文章成功！ ')
                 // 发布成功后,跳转到文章列表页面
                 // location.href = '/article/art_list.html'
                 window.parent.$('#btn-lie').click()
             }
         })
     }
+
+    // 渲染页面
+    //var value = JSON.parse(localStorage.getItem('data'))
+    var id = localStorage.getItem('data')
+    localStorage.removeItem('data')
+    $.ajax({
+        method: 'GET',
+        url: '/my/article/' + id,
+        success: function (res1) {
+            form.val('form-repub', res1.data)
+            localStorage.removeItem('data')
+        }
+    })
 })

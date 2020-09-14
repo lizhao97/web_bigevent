@@ -142,27 +142,10 @@ $(function () {
         });
     })
     // 点击编辑按钮
-    // 6. 监听编辑按钮的点击事件
-    // $('body').on('click', '.btn-bianji', function () {
-    //     location.href = '/article/art_edit.html?id=' + $(this).attr('data-id')
-    // })
-    // $('tbody').on('click', '.btn-bianji', function () {
-    //     // 获取文章的id
-    //     var id = $(this).attr('data-id')
-    //     localStorage.setItem('data', id)
-    //     location.href = '/article/art_pub.html'
-    //方法1
-    // $.ajax({
-    //     method: 'GET',
-    //     url: '/my/article/' + id,
-    //     success: function (res) {
-    //         if (res.status !== 0) {
-    //             return layer.msg('获取文章失败！')
-    //         }
-    //         localStorage.setItem('data', JSON.stringify(res.data))
-    //         location.href = '/article/art_pub.html'
-    //     }
-    // })
-
-    // })
+    $('tbody').on('click', '.btn-bianji', function () {
+        // 获取文章的id
+        var id = $(this).attr('data-id')
+        localStorage.setItem('data', id)
+        location.href = '/article/art_repub.html'
+    })
 })
