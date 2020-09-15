@@ -100,7 +100,7 @@ $(function () {
                 }
                 layer.msg('修改文章成功！ ')
                 // 发布成功后,跳转到文章列表页面
-                // location.href = '/article/art_list.html'
+                //location.href = '/article/art_list.html'
                 window.parent.$('#btn-lie').click()
             }
         })
@@ -109,7 +109,8 @@ $(function () {
     // 渲染页面
     //var value = JSON.parse(localStorage.getItem('data'))
     var id = localStorage.getItem('data')
-    localStorage.removeItem('data')
+    //localStorage.removeItem('data')
+    // console.log(id);
     $.ajax({
         method: 'GET',
         url: '/my/article/' + id,
