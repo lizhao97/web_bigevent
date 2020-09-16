@@ -115,6 +115,12 @@ $(function () {
         method: 'GET',
         url: '/my/article/' + id,
         success: function (res1) {
+            cover_img = 'http://ajax.frontend.itheima.net' + res1.data.cover_img
+            // 为裁剪区域重新设置图片
+            $image
+                .cropper('destroy') // 销毁旧的裁剪区域
+                .attr('src', cover_img) // 重新设置图片路径
+                .cropper(options) // 重新初始化裁剪区域
             form.val('form-repub', res1.data)
             localStorage.removeItem('data')
         }
